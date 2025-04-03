@@ -21,12 +21,17 @@ const ArtifactList = () => {
     );
 
   return (
-    <div>
-      <h1>Met Museum Artifacts</h1>
-      <div>
+    <div className="p-6 max-w-6xl mx-auto">
+      <h1 className="text-3xl font-bold mb-4">Met Museum Artifacts</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
         {artifacts.map((artifact) => (
-          <Link to={`/artifact/${artifact.objectID}`} key={artifact.objectID}>
+          <Link
+            to={`/artifact/${artifact.objectID}`}
+            key={artifact.objectID}
+            className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all p-4"
+          >
             <img
+              className="w-full h-150 object-cover mb-9"
               src={artifact.primaryImageSmall}
               alt={`Image of ${artifact.title || "Unknown Artifact"}`}
             />
