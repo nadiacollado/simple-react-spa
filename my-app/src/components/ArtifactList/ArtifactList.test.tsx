@@ -4,7 +4,7 @@ import ArtifactList from "./ArtifactList";
 import { BrowserRouter } from "react-router-dom";
 import { vi, describe, it, expect } from "vitest";
 
-vi.mock("../services/metMuseumService", () => ({
+vi.mock("../../services/metMuseumService", () => ({
   fetchArtifacts: async () => [
     {
       objectID: 1,
@@ -36,5 +36,22 @@ describe("ArtifactList", () => {
     await waitFor(() => {
       expect(screen.getByText("Mock Artifact")).toBeInTheDocument();
     });
+  });
+
+  it("renders images with descriptive alt text", async () => {
+    const queryClient = new QueryClient();
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ArtifactList />
+        </BrowserRouter>
+      </QueryClientProvider>
+    );
+
+    const image = await screen.findByRole("img");
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute("alt");
+    expect(image.getAttribute("alt")).toMatch(/^Image of /);
   });
 });

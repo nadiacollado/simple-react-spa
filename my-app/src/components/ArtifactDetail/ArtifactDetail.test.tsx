@@ -4,7 +4,7 @@ import ArtifactDetail from "./ArtifactDetail";
 import { BrowserRouter } from "react-router-dom";
 import { vi, describe, it, expect } from "vitest";
 
-vi.mock("../services/metMuseumService", () => ({
+vi.mock("../../services/metMuseumService", () => ({
   fetchArtifactById: async () => ({
     objectID: 1,
     title: "Mock Artifact",
@@ -51,11 +51,24 @@ describe("ArtifactDetail", () => {
     });
 
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute(
-      "href",
-      "http://mock.com"
-    );
+    expect(link).toHaveAttribute("href", "http://mock.com");
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noreferrer");
+  });
+
+  it("renders image with descriptive alt text", async () => {
+    const queryClient = new QueryClient();
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ArtifactDetail />
+        </BrowserRouter>
+      </QueryClientProvider>
+    );
+
+    const image = await screen.findByRole("img");
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute("alt", "Image of Mock Artifact");
   });
 });

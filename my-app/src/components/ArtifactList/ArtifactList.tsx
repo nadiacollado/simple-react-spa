@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { fetchArtifacts } from "../services/metMuseumService";
-import { Artifact } from "../types/artifact";
+import { fetchArtifacts } from "../../services/metMuseumService";
+import { Artifact } from "../../types/artifact";
 
 const ArtifactList = () => {
   const {
@@ -26,7 +26,10 @@ const ArtifactList = () => {
       <div>
         {artifacts.map((artifact) => (
           <Link to={`/artifact/${artifact.objectID}`} key={artifact.objectID}>
-            <img src={artifact.primaryImageSmall} alt={artifact.title} />
+            <img
+              src={artifact.primaryImageSmall}
+              alt={`Image of ${artifact.title || "Unknown Artifact"}`}
+            />
             <h2>{artifact.title || "Unknown Title"}</h2>
           </Link>
         ))}

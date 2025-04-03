@@ -1,8 +1,8 @@
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
-import ArtifactList from "../../components/ArtifactList";
-import ArtifactDetail from "../../components/ArtifactDetail";
+import ArtifactList from "../../components/ArtifactList/ArtifactList";
+import ArtifactDetail from "../../components/ArtifactDetail/ArtifactDetail";
 
 const App = () => {
   return (

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { fetchArtifactById } from "../services/metMuseumService";
-import { Artifact } from "../types/artifact";
+import { fetchArtifactById } from "../../services/metMuseumService";
+import { Artifact } from "../../types/artifact";
 
 const ArtifactDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,7 +21,10 @@ const ArtifactDetail = () => {
   return (
     <div>
       <h1>{artifact.title}</h1>
-      <img src={artifact.primaryImageSmall} alt={artifact.title} />
+      <img
+        src={artifact.primaryImageSmall}
+        alt={`Image of ${artifact.title}`}
+      />
       <p>
         <strong>Artist:</strong> {artifact.artistDisplayName || "Unknown"}
       </p>
