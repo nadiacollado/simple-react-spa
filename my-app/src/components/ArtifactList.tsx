@@ -23,13 +23,9 @@ const ArtifactList = () => {
   return (
     <div>
       <h1>Met Museum Artifacts</h1>
-      <div className="grid">
+      <div>
         {artifacts.map((artifact) => (
-          <Link
-            to={`/artifact/${artifact.objectID}`}
-            key={artifact.objectID}
-            className="card"
-          >
+          <Link to={`/artifact/${artifact.objectID}`} key={artifact.objectID}>
             <img src={artifact.primaryImageSmall} alt={artifact.title} />
             <h2>{artifact.title || "Unknown Title"}</h2>
           </Link>
