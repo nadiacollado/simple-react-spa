@@ -16,7 +16,9 @@ const ArtifactList = () => {
 
   if (isLoading) return <p>Loading Met Museum artifacts...</p>;
   if (error || !artifacts)
-    return <p>There’s been an issue loading artifacts. Please contact Nadia.</p>;
+    return (
+      <p>There’s been an issue loading artifacts. Please contact Nadia.</p>
+    );
 
   return (
     <div>
@@ -29,8 +31,7 @@ const ArtifactList = () => {
             className="card"
           >
             <img src={artifact.primaryImageSmall} alt={artifact.title} />
-            <h2>{artifact.title}</h2>
-            <p>{artifact.artistDisplayName || "Unknown Artist"}</p>
+            <h2>{artifact.title || "Unknown Title"}</h2>
           </Link>
         ))}
       </div>
