@@ -1,7 +1,8 @@
 import "./App.css";
 import { useQuery } from "@tanstack/react-query";
-import { fetchArtifacts, Artifact } from "../../services/metMuseumService";
+import { fetchArtifacts } from "../../services/metMuseumService";
 import { Link } from "react-router-dom";
+import { Artifact } from "../../types/artifact";
 
 function App() {
   const {

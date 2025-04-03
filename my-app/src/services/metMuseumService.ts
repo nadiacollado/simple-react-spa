@@ -1,12 +1,5 @@
 import axios from "axios";
-
-export interface Artifact {
-  objectID: number;
-  title: string;
-  primaryImageSmall: string;
-  artistDisplayName: string;
-  objectURL: string;
-}
+import { Artifact } from "../types/artifact";
 
 const BASE_URL = "https://collectionapi.metmuseum.org/public/collection/v1";
 
