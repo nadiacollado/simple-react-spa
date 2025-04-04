@@ -27,6 +27,7 @@ const ArtifactList = () => {
         {artifacts.map((artifact) => (
           <Link
             to={`/artifact/${artifact.objectID}`}
+            state={{ artifact }}
             key={artifact.objectID}
             className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all p-4"
           >

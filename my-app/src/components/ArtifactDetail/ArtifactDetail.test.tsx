@@ -1,27 +1,37 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ArtifactDetail from "./ArtifactDetail";
-import { BrowserRouter } from "react-router-dom";
-import { vi, describe, it, expect } from "vitest";
+import { BrowserRouter, useLocation } from "react-router-dom";
+import { vi, describe, it, expect, Mock, beforeEach } from "vitest";
 
-vi.mock("../../services/metMuseumService", () => ({
-  fetchArtifactById: async () => ({
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual("react-router-dom");
+  return {
+    ...actual,
+    useLocation: vi.fn(),
+  };
+});
+
+describe("ArtifactDetail", () => {
+  const artifact = {
     objectID: 1,
     title: "Mock Artifact",
     artistDisplayName: "Mock Artist",
+    artistDisplayBio: "Mock Artist Bio",
     primaryImageSmall: "mock-image.jpg",
-    department: "Paintings",
     objectDate: "2000",
     objectURL: "http://mock.com",
     medium: "Oil on canvas",
-    culture: "Mock Culture",
-  }),
-}));
+  };
 
-describe("ArtifactDetail", () => {
-  it("renders artifact from the API", async () => {
+  beforeEach(() => {
+    (useLocation as Mock).mockReturnValue({
+      state: { artifact },
+    });
+  });
+
+  it("renders artifact passed via state", async () => {
     const queryClient = new QueryClient();
-
     render(
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
@@ -32,6 +42,7 @@ describe("ArtifactDetail", () => {
 
     await waitFor(() => {
       expect(screen.getByText("Mock Artist")).toBeInTheDocument();
+      expect(screen.getByText("Mock Artifact")).toBeInTheDocument();
     });
   });
 
@@ -68,6 +79,7 @@ describe("ArtifactDetail", () => {
     );
 
     const image = await screen.findByRole("img");
+
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute("alt", "Image of Mock Artifact");
   });

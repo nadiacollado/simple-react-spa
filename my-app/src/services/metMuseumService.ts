@@ -27,8 +27,3 @@ export const fetchArtifacts = async (): Promise<Artifact[]> => {
     return [];
   }
 };
-
-export const fetchArtifactById = async (id: string): Promise<Artifact> => {
-  const { data } = await axios.get(`${BASE_URL}/objects/${id}`);
-  return data;
-};
