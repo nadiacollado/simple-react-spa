@@ -59,7 +59,7 @@ describe("ArtifactDetail", () => {
     );
 
     const link = await screen.findByRole("link", {
-      name: /visit artifact on met museum/i,
+      name: /visit artifact on the met museum archive/i,
     });
 
     expect(link).toBeInTheDocument();
