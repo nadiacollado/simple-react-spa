@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ArtifactList from "./ArtifactList";
 import { BrowserRouter } from "react-router-dom";
@@ -54,5 +54,33 @@ describe("ArtifactList", () => {
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute("alt");
     expect(image.getAttribute("alt")).toMatch(/^Image of /);
+  });
+
+  it("navigates to artifact details on link click", async () => {
+    const queryClient = new QueryClient();
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ArtifactList />
+        </BrowserRouter>
+      </QueryClientProvider>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("Mock Artifact")).toBeInTheDocument();
+    });
+
+    const artifactLink = screen.getByText("Mock Artifact").closest("a");
+
+    if (artifactLink) {
+      expect(artifactLink).toHaveAttribute("href", "/artifact/1");
+
+      fireEvent.click(artifactLink);
+
+      expect(window.location.pathname).toBe("/artifact/1");
+    } else {
+      throw new Error("Artifact link not found");
+    }
   });
 });
