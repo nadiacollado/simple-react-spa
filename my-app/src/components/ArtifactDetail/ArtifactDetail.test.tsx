@@ -16,12 +16,13 @@ describe("ArtifactDetail", () => {
   const artifact = {
     objectID: 1,
     title: "Mock Artifact",
-    artistDisplayName: "Mock Artist",
-    artistDisplayBio: "Mock Artist Bio",
     primaryImageSmall: "mock-image.jpg",
-    objectDate: "2000",
+    artistDisplayName: "Mock Artist",
     objectURL: "http://mock.com",
-    medium: "Oil on canvas",
+    objectDate: "2000",
+    medium: "Mock medium",
+    department: "Mock department",
+    culture: "Mock culture",
   };
 
   beforeEach(() => {

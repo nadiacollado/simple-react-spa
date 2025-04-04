@@ -3,8 +3,9 @@ export interface Artifact {
   title: string;
   primaryImageSmall: string;
   artistDisplayName: string;
-  artistDisplayBio: string;
   objectURL: string;
   objectDate: number;
   medium: string;
+  department: string;
+  culture: string;
 }

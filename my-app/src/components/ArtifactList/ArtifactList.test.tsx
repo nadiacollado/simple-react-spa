@@ -9,12 +9,13 @@ vi.mock("../../services/metMuseumService", () => ({
     {
       objectID: 1,
       title: "Mock Artifact",
-      artistDisplayName: "Mock Artist",
       primaryImageSmall: "mock-image.jpg",
-      department: "Paintings",
-      objectDate: "2000",
+      artistDisplayName: "Mock Artist",
       objectURL: "http://mock.com",
-      medium: "Oil on canvas",
+      objectDate: "2000",
+      medium: "Mock medium",
+      department: "Mock department",
+      culture: "Mock culture",
     },
   ],
 }));

@@ -17,12 +17,16 @@ const ArtifactList = () => {
   if (isLoading) return <p>Loading Met Museum artifacts...</p>;
   if (error || !artifacts)
     return (
-      <p>There’s been an issue loading artifacts. Please contact Nadia.</p>
+      <p>
+        Failed to load Met Museum artifacts. Please contact site administrator.{" "}
+      </p>
     );
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">Met Museum Artifacts</h1>
+      <h1 className="font-secondary text-3xl font-bold mb-6">
+        Met Museum Artifacts
+      </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
         {artifacts.map((artifact) => (
           <Link
@@ -36,7 +40,9 @@ const ArtifactList = () => {
               src={artifact.primaryImageSmall}
               alt={`Image of ${artifact.title || "Unknown Artifact"}`}
             />
-            <h2>{artifact.title || "Unknown Title"}</h2>
+            <h2 className="font-primary text-xl">
+              {artifact.title || "Unknown Title"}
+            </h2>
           </Link>
         ))}
       </div>

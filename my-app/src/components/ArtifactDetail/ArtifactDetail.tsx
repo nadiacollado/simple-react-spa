@@ -9,33 +9,51 @@ const ArtifactDetail = () => {
 
   return (
     <>
-      <div className="mb-4">
+      <div>
         <button
           onClick={() => navigate(-1)}
-          className="text-black cursor-pointer "
+          className="font-secondary text-sm mb-4 text-black cursor-pointer underline hover:underline hover:decoration-gray-300"
         >
-          Back
+          Back to Artifacts
         </button>
       </div>
       <div className="min-h-screen flex items-center justify-center">
         <div className="max-w-7xl mx-auto p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="flex flex-col justify-center">
-              <h1 className="text-3xl font-bold mb-4">{artifact.title}</h1>
-              <p className="text-m mb-2">
-                <strong className="font-semibold">Artist:</strong>{" "}
+            <div className="text-sm flex flex-col justify-center">
+              <h1 className="font-primary text-3xl font-bold mb-4">
+                {artifact.title}
+              </h1>
+              <p className="mb-2">
+                <span className="font-semibold">Artist:</span>{" "}
                 {artifact.artistDisplayName || "Unknown"}
               </p>
-              <p className="text-m mb-2">
-                <strong className="font-semibold">Date:</strong>{" "}
+              <p className="mb-2">
+                <span className="font-semibold">Date:</span>{" "}
                 {artifact.objectDate}
               </p>
-              <p className="text-m mb-4">
-                <strong className="font-semibold">Medium:</strong>{" "}
-                {artifact.medium}
+              <p className="mb-2">
+                <span className="font-semibold">Medium:</span> {artifact.medium}
               </p>
-              <a href={artifact.objectURL} target="_blank" rel="noreferrer">
-                Visit Artifact on Met Museum Archive
+              {artifact.culture && artifact.culture.trim() !== "" && (
+                <p className="mb-2">
+                  <span className="font-semibold">Culture:</span>{" "}
+                  {artifact.culture}
+                </p>
+              )}
+              {artifact.department && artifact.department.trim() !== "" && (
+                <p className="mb-4">
+                  <span className="font-semibold">Department:</span>{" "}
+                  {artifact.department}
+                </p>
+              )}
+              <a
+                className="underline hover:underline hover:decoration-gray-300"
+                href={artifact.objectURL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Visit Artifact on the Met Museum Archive
               </a>
             </div>
             <div className="bg-black p-6 flex justify-center">
